@@ -1,0 +1,10 @@
+.blogs-wrapper {
+  max-width: 800px;
+  width: 90%;
+  margin: 3rem auto 0 !important;
+  padding: 0 3rem !important;
+  @media (max-width: 760px) {
+    padding: 0 1rem !important;
+    margin: 2rem 0.3rem 0 !important;
+  }
+}
