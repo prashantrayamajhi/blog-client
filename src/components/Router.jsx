@@ -21,6 +21,7 @@ const RouterComponent = () => {
           <Route exact path="/admin/tags" component={Tags} />
           <Route exact path="/admin/blogs" component={Blogs} />
           <Route exact path="/admin/create" component={Create} />
+          <Route exact path="/admin/create/:id" component={Create} />
         </Switch>
       </Router>
       <Footer />

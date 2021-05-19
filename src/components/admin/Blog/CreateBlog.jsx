@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Axios from "./../../../api/server";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import "./CreateBlog.scss";
 
 const CreateBlog = () => {
   const [tags, setTags] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
   const [err, setErr] = useState("");
+  const { id } = useParams();
 
   const history = useHistory();
 
@@ -30,15 +32,21 @@ const CreateBlog = () => {
       content,
     };
     try {
-      const res = await Axios.post("/api/v1/blogs", data);
-      console.log(res);
-      if (res.status === 201) {
-        history.push("/admin/blogs");
+      if (isEdit) {
+        const res = await Axios.patch("/api/v1/blogs/" + id, data);
+        if (res.status === 200) {
+          history.push("/admin/blogs");
+        }
+      } else {
+        const res = await Axios.post("/api/v1/blogs", data);
+        if (res.status === 201) {
+          history.push("/admin/blogs");
+        }
       }
     } catch (err) {
       console.log(err);
       setErr(err.response.data.err);
-      alert(err.response.data.err);
+      alert(err);
       setIsLoading(false);
     }
   };
@@ -50,6 +58,24 @@ const CreateBlog = () => {
       </option>
     );
   });
+
+  // handle edit
+  useEffect(() => {
+    if (id) {
+      const fetchBlog = async () => {
+        const res = await Axios.get("/api/v1/blogs/" + id);
+        if (res.status === 200) {
+          console.log(res.data.data);
+          setIsEdit(true);
+          setTitle(res.data.data.title);
+          setTag(res.data.data.tag._id);
+          setDescription(res.data.data.description);
+          setContent(res.data.data.content);
+        }
+      };
+      fetchBlog();
+    }
+  }, []);
 
   useEffect(() => {
     const fetchTags = async () => {
@@ -64,13 +90,15 @@ const CreateBlog = () => {
     if (isLoading) {
       return <div className="loader"></div>;
     } else {
-      return <button disabled={isLoading}>Submit</button>;
+      return (
+        <button disabled={isLoading}>{isEdit ? "Update" : "Submit"}</button>
+      );
     }
   };
 
   return (
     <div className="create-blog">
-      <h2>Let's write a blog :)</h2>
+      <h2>{isEdit ? "Update the blog" : "Let's write a blog"}</h2>
       <form onSubmit={handleFormSubmit}>
         <div className="input-wrapper">
           <input
@@ -98,7 +126,7 @@ const CreateBlog = () => {
           <textarea
             placeholder="Description"
             rows={4}
-            data={description}
+            value={description}
             onChange={(e) => {
               handleInputChange(setDescription, e.target.value);
             }}
@@ -109,7 +137,7 @@ const CreateBlog = () => {
           <textarea
             placeholder="Write your blog"
             rows={8}
-            data={content}
+            value={content}
             onChange={(e) => {
               handleInputChange(setContent, e.target.value);
             }}

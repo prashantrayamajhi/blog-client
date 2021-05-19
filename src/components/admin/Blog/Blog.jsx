@@ -40,13 +40,15 @@ const Blog = () => {
           </td>
           <td>{blog.date}</td>
           <td style={{ textAlign: "center" }}>
-            <img
-              src={Edit}
-              alt="Edit Icon"
-              onClick={() => {
-                handleEdit(blog.name, blog._id);
-              }}
-            />
+            <Link to={`/admin/create/${blog._id}`}>
+              <img
+                src={Edit}
+                alt="Edit Icon"
+                onClick={() => {
+                  handleEdit(blog.name, blog._id);
+                }}
+              />
+            </Link>
             <img
               src={Delete}
               alt="Edit Icon"
