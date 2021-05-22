@@ -1,7 +1,24 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import Axios from "./../../api/server";
 import "./Header.scss";
 
 const Header = () => {
+  const [tags, setTags] = useState([]);
+  useEffect(() => {
+    const fetchTags = async () => {
+      const res = await Axios.get("/api/v1/tags");
+      setTags(res.data.data);
+    };
+    fetchTags();
+  }, []);
+
+  const mappedTags = tags.map((tag, index) => {
+    return (
+      <p className="tag" key={index}>
+        {tag.name}
+      </p>
+    );
+  });
   return (
     <>
       <div className="header">
@@ -10,15 +27,7 @@ const Header = () => {
         <div className="search-wrapper">
           <input type="text" placeholder="Search blogs..." autoFocus />
         </div>
-        <div className="tags">
-          <p className="tag">React</p>
-          <p className="tag">Javascript</p>
-          <p className="tag">CSS</p>
-          <p className="tag">Database</p>
-          <p className="tag">Express</p>
-          <p className="tag">Project</p>
-          <p className="tag">General</p>
-        </div>
+        <div className="tags">{mappedTags}</div>
       </div>
     </>
   );
