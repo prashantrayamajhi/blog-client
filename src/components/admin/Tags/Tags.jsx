@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Axios from "./../../../api/server";
 import Delete from "./../../../images/trash.png";
 import Edit from "./../../../images/edit.png";
+import config from "./../../../helper/config";
 import "./Tags.scss";
 
 const Tags = () => {
@@ -19,9 +20,9 @@ const Tags = () => {
       name,
     };
     if (!isEdit) {
-      await Axios.post("/api/v1/tags", data);
+      await Axios.post("/api/v1/tags", data, config);
     } else {
-      await Axios.patch("/api/v1/tags/" + id, data);
+      await Axios.patch("/api/v1/tags/" + id, data, config);
     }
     window.location.reload();
   };
@@ -36,7 +37,7 @@ const Tags = () => {
   }, []);
 
   const handleDelete = async (id) => {
-    await Axios.delete("/api/v1/tags/" + id);
+    await Axios.delete("/api/v1/tags/" + id, config);
     window.location.reload();
   };
 

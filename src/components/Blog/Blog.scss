@@ -58,6 +58,7 @@
     h3,
     h4 {
       margin-bottom: 1rem;
+      color: #000000;
     }
     h2 {
       font-size: 2rem;
@@ -73,9 +74,10 @@
     }
     ul,
     ol {
+      margin-top: -2rem;
       li {
         font-size: 1.1rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
         line-height: 1.9rem;
       }
     }
