@@ -12,8 +12,8 @@ const Footer = () => {
       <div className="text">
         <h4>Prashant Rayamajhi</h4>
         <p>
-          Prashant is a self taught web developer who loves exploring tech and
-          new programming languages.
+          Hi, I am Prashant Rayamajhi. I build interesting and scalable Web
+          Applications.
         </p>
         <div className="social-wrapper">
           <a href="/" target="_blank" rel="noreferrer">
