@@ -4,6 +4,7 @@ import Axios from "./../../../api/server";
 import Delete from "./../../../images/trash.png";
 import Edit from "./../../../images/edit.png";
 import config from "./../../../helper/config";
+import Navbar from "./../Navbar/Navbar";
 import "./Blog.scss";
 
 const Blog = () => {
@@ -53,25 +54,28 @@ const Blog = () => {
     });
 
   return (
-    <div className="blogs-wrapper">
-      <div className="title">
-        <h1>Admin Blogs</h1>
-        <Link className="link" to="/admin/create">
-          +
-        </Link>
+    <>
+      <Navbar />
+      <div className="blogs-wrapper">
+        <div className="title">
+          <h1>Admin Blogs</h1>
+          <Link className="link" to="/admin/create">
+            +
+          </Link>
+        </div>
+        <table border="1">
+          <thead>
+            <tr>
+              <th>SN</th>
+              <th>Title</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>{mappedBlogs}</tbody>
+        </table>
       </div>
-      <table border="1">
-        <thead>
-          <tr>
-            <th>SN</th>
-            <th>Title</th>
-            <th>Date</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>{mappedBlogs}</tbody>
-      </table>
-    </div>
+    </>
   );
 };
 
