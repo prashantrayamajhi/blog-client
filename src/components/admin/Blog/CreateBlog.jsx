@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "./../../../api/server";
 import { useHistory, useParams } from "react-router-dom";
+import config from "./../../../helper/config";
 import "./CreateBlog.scss";
 
 const CreateBlog = () => {
@@ -33,12 +34,12 @@ const CreateBlog = () => {
     };
     try {
       if (isEdit) {
-        const res = await Axios.patch("/api/v1/blogs/" + id, data);
+        const res = await Axios.patch("/api/v1/blogs/" + id, data, config);
         if (res.status === 200) {
           history.push("/admin/blogs");
         }
       } else {
-        const res = await Axios.post("/api/v1/blogs", data);
+        const res = await Axios.post("/api/v1/blogs", data, config);
         if (res.status === 201) {
           history.push("/admin/blogs");
         }

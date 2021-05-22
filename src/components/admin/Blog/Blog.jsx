@@ -3,26 +3,23 @@ import { Link } from "react-router-dom";
 import Axios from "./../../../api/server";
 import Delete from "./../../../images/trash.png";
 import Edit from "./../../../images/edit.png";
+import config from "./../../../helper/config";
 import "./Blog.scss";
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
 
-  const fetchBlogs = async () => {
-    const res = await Axios.get("/api/v1/blogs");
-    setBlogs(res.data.data);
-  };
-
   const handleDelete = async (id) => {
-    await Axios.delete("/api/v1/blogs/" + id);
+    await Axios.delete("/api/v1/blogs/" + id, config);
     window.location.reload();
   };
-
-  const handleEdit = async (name, id) => {
-    // setName(name);
-    // setId(id);
-    // setIsEdit(true);
-  };
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      const res = await Axios.get("/api/v1/blogs");
+      setBlogs(res.data.data);
+    };
+    fetchBlogs();
+  }, []);
 
   let sn = 0;
   const mappedBlogs = blogs
@@ -41,13 +38,7 @@ const Blog = () => {
           <td>{blog.date}</td>
           <td style={{ textAlign: "center" }}>
             <Link to={`/admin/create/${blog._id}`}>
-              <img
-                src={Edit}
-                alt="Edit Icon"
-                onClick={() => {
-                  handleEdit(blog.name, blog._id);
-                }}
-              />
+              <img src={Edit} alt="Edit Icon" />
             </Link>
             <img
               src={Delete}
@@ -60,10 +51,6 @@ const Blog = () => {
         </tr>
       );
     });
-
-  useEffect(() => {
-    fetchBlogs();
-  }, []);
 
   return (
     <div className="blogs-wrapper">
