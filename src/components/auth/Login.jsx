@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./../../css/form.scss";
 import Axios from "./../../api/server";
 
@@ -6,6 +6,12 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [err, setErr] = useState("");
+
+  useEffect(() => {
+    if (localStorage.getItem("id") && localStorage.getItem("token")) {
+      window.location.href = "/admin/create/";
+    }
+  }, []);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -16,7 +22,7 @@ const Login = () => {
       if (res.status === 200) {
         localStorage.setItem("id", res.data.data.id);
         localStorage.setItem("token", res.data.data.token);
-        // window.location.href = "/admin/create";
+        window.location.href = "/admin/create/";
       }
     } catch (err) {
       setErr(err.response.data.err);

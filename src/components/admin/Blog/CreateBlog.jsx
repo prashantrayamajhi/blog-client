@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Axios from "./../../../api/server";
 import { useHistory, useParams } from "react-router-dom";
 import config from "./../../../helper/config";
+import Navbar from "./../Navbar/Navbar";
 import "./CreateBlog.scss";
 
 const CreateBlog = () => {
@@ -98,55 +99,58 @@ const CreateBlog = () => {
   };
 
   return (
-    <div className="create-blog">
-      <h2>{isEdit ? "Update the blog" : "Let's write a blog"}</h2>
-      <form onSubmit={handleFormSubmit}>
-        <div className="input-wrapper">
-          <input
-            type="text"
-            placeholder="Enter the title"
-            value={title}
-            onChange={(e) => {
-              handleInputChange(setTitle, e.target.value);
-            }}
-          />
-        </div>
-        <div className="input-wrapper">
-          <select
-            id="tags"
-            value={tag}
-            onChange={(e) => {
-              handleInputChange(setTag, e.target.value);
-            }}
-          >
-            {renderTags}
-          </select>
-        </div>
+    <>
+      <Navbar />
+      <div className="create-blog">
+        <h2>{isEdit ? "Update the blog" : "Let's write a blog"}</h2>
+        <form onSubmit={handleFormSubmit}>
+          <div className="input-wrapper">
+            <input
+              type="text"
+              placeholder="Enter the title"
+              value={title}
+              onChange={(e) => {
+                handleInputChange(setTitle, e.target.value);
+              }}
+            />
+          </div>
+          <div className="input-wrapper">
+            <select
+              id="tags"
+              value={tag}
+              onChange={(e) => {
+                handleInputChange(setTag, e.target.value);
+              }}
+            >
+              {renderTags}
+            </select>
+          </div>
 
-        <div className="input-wrapper">
-          <textarea
-            placeholder="Description"
-            rows={4}
-            value={description}
-            onChange={(e) => {
-              handleInputChange(setDescription, e.target.value);
-            }}
-          ></textarea>
-        </div>
+          <div className="input-wrapper">
+            <textarea
+              placeholder="Description"
+              rows={4}
+              value={description}
+              onChange={(e) => {
+                handleInputChange(setDescription, e.target.value);
+              }}
+            ></textarea>
+          </div>
 
-        <div className="input-wrapper">
-          <textarea
-            placeholder="Write your blog"
-            rows={8}
-            value={content}
-            onChange={(e) => {
-              handleInputChange(setContent, e.target.value);
-            }}
-          ></textarea>
-        </div>
-        {displayBtn()}
-      </form>
-    </div>
+          <div className="input-wrapper">
+            <textarea
+              placeholder="Write your blog"
+              rows={15}
+              value={content}
+              onChange={(e) => {
+                handleInputChange(setContent, e.target.value);
+              }}
+            ></textarea>
+          </div>
+          {displayBtn()}
+        </form>
+      </div>
+    </>
   );
 };
 

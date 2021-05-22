@@ -3,6 +3,7 @@ import Axios from "./../../../api/server";
 import Delete from "./../../../images/trash.png";
 import Edit from "./../../../images/edit.png";
 import config from "./../../../helper/config";
+import Navbar from "./../Navbar/Navbar";
 import "./Tags.scss";
 
 const Tags = () => {
@@ -83,35 +84,38 @@ const Tags = () => {
   };
 
   return (
-    <div className="tags-wrapper">
-      <div className="add-tag">
-        <form onSubmit={onFormSubmit}>
-          <h3>Add A Tag</h3>
-          <input
-            type="text"
-            placeholder="Enter the tag"
-            value={name}
-            required
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-          />
-          {displayBtn()}
-        </form>
+    <>
+      <Navbar />
+      <div className="tags-wrapper">
+        <div className="add-tag">
+          <form onSubmit={onFormSubmit}>
+            <h3>Add A Tag</h3>
+            <input
+              type="text"
+              placeholder="Enter the tag"
+              value={name}
+              required
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+            />
+            {displayBtn()}
+          </form>
+        </div>
+        <div className="tags">
+          <table border="1">
+            <thead>
+              <tr>
+                <th>SN</th>
+                <th>Tag</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>{mappedTags}</tbody>
+          </table>
+        </div>
       </div>
-      <div className="tags">
-        <table border="1">
-          <thead>
-            <tr>
-              <th>SN</th>
-              <th>Tag</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>{mappedTags}</tbody>
-        </table>
-      </div>
-    </div>
+    </>
   );
 };
 
