@@ -35,7 +35,7 @@
     ol,
     ul,
     code {
-      margin-bottom: 3rem;
+      margin-bottom: 2.5rem;
     }
     code {
       display: block;
@@ -56,9 +56,11 @@
     }
     h2,
     h3,
-    h4 {
+    h4,
+    h5,
+    h6 {
       margin-bottom: 1rem;
-      color: #000000;
+      color: #292323dc;
     }
     h2 {
       font-size: 2rem;
@@ -74,18 +76,29 @@
     }
     ul,
     ol {
-      margin-top: -2rem;
+      margin-left: 1rem;
       li {
         font-size: 1.1rem;
         margin-bottom: 0.5rem;
         line-height: 1.9rem;
       }
     }
+    blockquote {
+      background-color: rgba(173, 173, 173, 0.479);
+      p {
+        padding: 0.5rem 1rem;
+        font-style: italic;
+        color: rgba(0, 0, 0, 0.8);
+      }
+    }
     img {
       width: 100%;
-      margin-bottom: 2rem;
-      height: 10rem;
-      object-fit: contain;
+      margin-bottom: 1.5rem;
+      height: 25rem;
+      object-fit: cover;
+    }
+    a {
+      color: black;
     }
     strong {
       background-color: #000000;
