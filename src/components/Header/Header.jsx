@@ -3,7 +3,7 @@ import Axios from "./../../api/server";
 import { Link } from "react-router-dom";
 import "./Header.scss";
 
-const Header = ({ handleSelect, selected }) => {
+const Header = ({ handleSelect, selected, term, setTerm, onSearch }) => {
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
@@ -38,7 +38,15 @@ const Header = ({ handleSelect, selected }) => {
           </h1>
         </Link>
         <div className="search-wrapper">
-          <input type="text" placeholder="Search blogs..." autoFocus />
+          <form onSubmit={onSearch}>
+            <input
+              type="text"
+              placeholder="Search blogs..."
+              value={term}
+              onChange={(e) => setTerm(e.target.value)}
+              autoFocus
+            />
+          </form>
         </div>
         <div className="tags">{mappedTags}</div>
       </div>
