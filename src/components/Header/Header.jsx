@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Axios from "./../../api/server";
+import { Link } from "react-router-dom";
 import "./Header.scss";
 
 const Header = ({ handleSelect, selected }) => {
@@ -30,8 +31,12 @@ const Header = ({ handleSelect, selected }) => {
   return (
     <>
       <div className="header">
-        <h1>Welcome to Programming Blogs</h1>
-        <p>A lot of information about programming</p>
+        <Link to="/" className="link">
+          <h1>
+            <span className="small-text">Welcome to</span> <br />
+            <span className="main-text">Programming Blogs</span>
+          </h1>
+        </Link>
         <div className="search-wrapper">
           <input type="text" placeholder="Search blogs..." autoFocus />
         </div>
