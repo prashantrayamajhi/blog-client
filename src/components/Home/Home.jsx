@@ -6,6 +6,7 @@ import "./Home.scss";
 
 const Home = () => {
   const [blogs, setBlogs] = useState([]);
+  const [term, setTerm] = useState("");
   const [selected, setSelected] = useState([]);
 
   const handleSelect = (tag) => {
@@ -16,6 +17,21 @@ const Home = () => {
     } else {
       arr.splice(arr.indexOf(tag), 1);
       setSelected(arr);
+    }
+  };
+
+  const onSearch = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await Axios.get("/api/v1/blogs/search/" + term);
+      setSelected("");
+      if (res.data.data.length > 0) {
+        setBlogs(res.data.data);
+      } else {
+        setTerm("");
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -49,7 +65,13 @@ const Home = () => {
   return (
     <>
       <div className="blogs-home">
-        <Header handleSelect={handleSelect} selected={selected} />
+        <Header
+          handleSelect={handleSelect}
+          selected={selected}
+          term={term}
+          setTerm={setTerm}
+          onSearch={onSearch}
+        />
         <div className="blogs-wrapper">{mappedBlogs}</div>
       </div>
     </>
