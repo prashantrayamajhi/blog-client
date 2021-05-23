@@ -6,14 +6,33 @@ import "./Home.scss";
 
 const Home = () => {
   const [blogs, setBlogs] = useState([]);
+  const [selected, setSelected] = useState([]);
+
+  const handleSelect = (tag) => {
+    const arr = [...selected];
+    if (arr.indexOf(tag) === -1) {
+      arr.push(tag);
+      setSelected(arr);
+    } else {
+      arr.splice(arr.indexOf(tag), 1);
+      setSelected(arr);
+    }
+  };
 
   useEffect(() => {
     const fetchBlogs = async () => {
-      const res = await Axios.get("/api/v1/blogs");
-      setBlogs(res.data.data);
+      if (selected.length <= 0) {
+        const res = await Axios.get("/api/v1/blogs");
+        setBlogs(res.data.data);
+      } else {
+        const data = { tags: selected };
+        const res = await Axios.post("/api/v1/blogs/tags", data);
+        console.log(res.data.data);
+        setBlogs(res.data.data);
+      }
     };
     fetchBlogs();
-  }, []);
+  }, [selected]);
 
   const mappedBlogs = blogs.map((blog, index) => {
     return (
@@ -30,7 +49,7 @@ const Home = () => {
 
   return (
     <>
-      <Header />
+      <Header handleSelect={handleSelect} selected={selected} />
       <div className="blogs-wrapper">{mappedBlogs}</div>
     </>
   );

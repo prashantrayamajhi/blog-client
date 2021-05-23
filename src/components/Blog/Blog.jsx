@@ -6,6 +6,7 @@ import "./Blog.scss";
 
 const Blog = () => {
   const [blog, setBlog] = useState({});
+
   const [markdown, setMarkdown] = useState("");
   const { id } = useParams();
 
@@ -16,7 +17,8 @@ const Blog = () => {
       setMarkdown(Markdown(res.data.data.sanitizedHTML));
     };
     fetchBlog();
-  }, []);
+  }, [id]);
+
   return (
     <>
       <div className="blog">

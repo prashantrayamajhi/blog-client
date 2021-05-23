@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import Axios from "./../../api/server";
 import "./Header.scss";
 
-const Header = () => {
+const Header = ({ handleSelect, selected }) => {
   const [tags, setTags] = useState([]);
+
   useEffect(() => {
     const fetchTags = async () => {
       const res = await Axios.get("/api/v1/tags");
@@ -14,11 +15,18 @@ const Header = () => {
 
   const mappedTags = tags.map((tag, index) => {
     return (
-      <p className="tag" key={index}>
+      <p
+        className={`tag ${selected.indexOf(tag._id) !== -1 ? "active" : ""}`}
+        key={index}
+        onClick={() => {
+          handleSelect(tag._id);
+        }}
+      >
         {tag.name}
       </p>
     );
   });
+
   return (
     <>
       <div className="header">
