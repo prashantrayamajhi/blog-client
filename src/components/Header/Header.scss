@@ -1,34 +1,41 @@
 @import "./../../css/color.scss";
 
 .header {
-  text-align: center;
-  padding: 2rem 1rem 3rem;
+  padding: 2rem 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-  max-width: 800px;
-  width: 90%;
-  margin: auto;
   @media (max-width: 760px) {
     width: 100%;
   }
-  h1 {
-    font-size: 2.5rem;
-    color: #000;
-    @media (max-width: 760px) {
-      font-size: 1.5rem;
-    }
-  }
-  p {
-    margin-top: 0.5rem;
-    font-size: 1.3rem;
-    color: $secondary;
-    @media (max-width: 760px) {
-      font-size: 0.9rem;
+  .link {
+    text-decoration: none;
+    h1 {
+      line-height: 2.8rem;
+      color: #000;
+      .small-text {
+        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+        font-size: 2.5rem;
+        font-weight: 600;
+        @media (max-width: 768px) {
+          font-size: 2rem;
+        }
+      }
+      .main-text {
+        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+        font-weight: 700;
+        font-size: 3.5rem;
+        @media (max-width: 768px) {
+          font-size: 2.5rem;
+        }
+      }
     }
   }
   .search-wrapper {
+    margin-top: 2.3rem;
+    @media (max-width: 768px) {
+      margin-top: 1.5rem;
+    }
     input {
-      width: 70%;
-      margin: 1rem auto 0;
+      width: 100%;
       font-size: 1.1rem;
       padding: 0.5rem;
       outline: none;
@@ -41,22 +48,20 @@
   .tags {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    margin-top: 1rem;
-    gap: 1rem;
-    width: 80%;
-    margin: 1rem auto 0;
+    width: 100%;
+    margin: 1rem 0 0;
+    gap: 0.5rem;
     @media (max-width: 760px) {
-      width: 100%;
       gap: 0.4rem;
     }
     .tag {
       border: 1px solid $secondary;
       color: black;
-      padding: 0.4rem 1.1rem;
+      padding: 0.2rem 1rem;
       border-radius: 3px;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       cursor: pointer;
       position: relative;
       text-align: center;
@@ -64,8 +69,8 @@
       align-items: center;
       justify-content: space-around;
       @media (max-width: 760px) {
-        font-size: 0.9rem;
-        padding: 0.4rem 1rem;
+        font-size: 0.85rem;
+        padding: 0.2rem 1rem;
       }
     }
     .tag.active {

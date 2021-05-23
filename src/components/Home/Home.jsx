@@ -27,7 +27,6 @@ const Home = () => {
       } else {
         const data = { tags: selected };
         const res = await Axios.post("/api/v1/blogs/tags", data);
-        console.log(res.data.data);
         setBlogs(res.data.data);
       }
     };
@@ -49,8 +48,10 @@ const Home = () => {
 
   return (
     <>
-      <Header handleSelect={handleSelect} selected={selected} />
-      <div className="blogs-wrapper">{mappedBlogs}</div>
+      <div className="blogs-home">
+        <Header handleSelect={handleSelect} selected={selected} />
+        <div className="blogs-wrapper">{mappedBlogs}</div>
+      </div>
     </>
   );
 };
