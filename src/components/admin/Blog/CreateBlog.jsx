@@ -48,7 +48,6 @@ const CreateBlog = () => {
     } catch (err) {
       console.log(err);
       setErr(err.response.data.err);
-      alert(err);
       setIsLoading(false);
     }
   };
@@ -77,7 +76,7 @@ const CreateBlog = () => {
       };
       fetchBlog();
     }
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     const fetchTags = async () => {
@@ -103,6 +102,11 @@ const CreateBlog = () => {
       <Navbar />
       <div className="create-blog">
         <h2>{isEdit ? "Update the blog" : "Let's write a blog"}</h2>
+        {err && (
+          <div className="err">
+            <p>{err}</p>
+          </div>
+        )}
         <form onSubmit={handleFormSubmit}>
           <div className="input-wrapper">
             <input

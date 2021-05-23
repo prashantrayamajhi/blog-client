@@ -68,5 +68,9 @@
         padding: 0.4rem 1rem;
       }
     }
+    .tag.active {
+      background-color: #000;
+      color: #fff;
+    }
   }
 }
