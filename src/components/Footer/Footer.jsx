@@ -3,6 +3,7 @@ import Prashant from "./../../images/prashant.jpg";
 import Facebook from "./../../images/facebook.png";
 import Linkedin from "./../../images/linkedin.png";
 import Instagram from "./../../images/instagram.png";
+import Github from "./../../images/github.png";
 import "./Footer.scss";
 
 const Footer = () => {
@@ -16,6 +17,13 @@ const Footer = () => {
           Applications.
         </p>
         <div className="social-wrapper">
+          <a
+            href="https://github.com/prashantrayamajhi"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src={Github} alt="" />
+          </a>
           <a href="/" target="_blank" rel="noreferrer">
             <img src={Facebook} alt="" />
           </a>
