@@ -25,7 +25,7 @@ const Blog = () => {
         <Link to="/" className="link">
           <h3>Programming Blogs</h3>
         </Link>
-        {!blog ? (
+        {blog ? (
           <>
             <h1>{blog.title}</h1>
             <p className="date">{blog.date}</p>
