@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import Header from "./../Header/Header";
 import Card from "./../Card/Card";
 import Axios from "./../../api/server";
+import Loader from "./../Loader/Home";
 import "./Home.scss";
 
 const Home = () => {
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [term, setTerm] = useState("");
   const [selected, setSelected] = useState([]);
 
@@ -40,10 +42,12 @@ const Home = () => {
       if (selected.length <= 0) {
         const res = await Axios.get("/api/v1/blogs");
         setBlogs(res.data.data);
+        setLoading(false);
       } else {
         const data = { tags: selected };
         const res = await Axios.post("/api/v1/blogs/tags", data);
         setBlogs(res.data.data);
+        setLoading(false);
       }
     };
     fetchBlogs();
@@ -72,7 +76,9 @@ const Home = () => {
           setTerm={setTerm}
           onSearch={onSearch}
         />
-        <div className="blogs-wrapper">{mappedBlogs}</div>
+        <div className="blogs-wrapper">
+          {loading ? <Loader /> : mappedBlogs}
+        </div>
       </div>
     </>
   );
