@@ -11,6 +11,10 @@ const Blog = () => {
   const { id } = useParams();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const fetchBlog = async () => {
       const res = await Axios.get("/api/v1/blogs/" + id);
       setBlog(res.data.data);
