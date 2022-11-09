@@ -6,7 +6,7 @@ import Navbar from "./../Navbar/Navbar";
 import "./CreateBlog.scss";
 
 const CreateBlog = () => {
-  const [tags, setTags] = useState([]);
+  // const [tags, setTags] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [err, setErr] = useState("");
@@ -29,7 +29,7 @@ const CreateBlog = () => {
     setIsLoading(true);
     const data = {
       title,
-      tag,
+      // tag,
       description,
       content,
     };
@@ -52,13 +52,13 @@ const CreateBlog = () => {
     }
   };
 
-  const renderTags = tags.map((tag, index) => {
-    return (
-      <option key={index} value={tag._id}>
-        {tag.name}
-      </option>
-    );
-  });
+  // const renderTags = tags.map((tag, index) => {
+  //   return (
+  //     <option key={index} value={tag._id}>
+  //       {tag.name}
+  //     </option>
+  //   );
+  // });
 
   // handle edit
   useEffect(() => {
@@ -69,7 +69,7 @@ const CreateBlog = () => {
           console.log(res.data.data);
           setIsEdit(true);
           setTitle(res.data.data.title);
-          setTag(res.data.data.tag._id);
+          // setTag(res.data.data.tag._id);
           setDescription(res.data.data.description);
           setContent(res.data.data.content);
         }
@@ -78,14 +78,14 @@ const CreateBlog = () => {
     }
   }, [id]);
 
-  useEffect(() => {
-    const fetchTags = async () => {
-      const res = await Axios.get("/api/v1/tags");
-      setTags(res.data.data);
-      setTag(res.data.data[0]._id);
-    };
-    fetchTags();
-  }, []);
+  // useEffect(() => {
+  //   const fetchTags = async () => {
+  //     const res = await Axios.get("/api/v1/tags");
+  //     setTags(res.data.data);
+  //     setTag(res.data.data[0]._id);
+  //   };
+  //   fetchTags();
+  // }, []);
 
   const displayBtn = () => {
     if (isLoading) {
@@ -118,7 +118,7 @@ const CreateBlog = () => {
               }}
             />
           </div>
-          <div className="input-wrapper">
+          {/* <div className="input-wrapper">
             <select
               id="tags"
               value={tag}
@@ -128,7 +128,7 @@ const CreateBlog = () => {
             >
               {renderTags}
             </select>
-          </div>
+          </div> */}
 
           <div className="input-wrapper">
             <textarea

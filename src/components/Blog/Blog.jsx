@@ -33,7 +33,7 @@ const Blog = () => {
           <>
             <h1>{blog.title}</h1>
             <p className="date">{blog.date}</p>
-            {blog.tag && <p className="tag">{blog.tag.name}</p>}
+            {/* {blog.tag && <p className="tag">{blog.tag.name}</p>} */}
             <div className="content">
               <article dangerouslySetInnerHTML={{ __html: markdown }}></article>
             </div>

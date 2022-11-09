@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Card.scss";
 
-const Card = ({ id, title, date, tag, description }) => {
+const Card = ({ id, title, date, name, description }) => {
   return (
     <>
       <div className="card">
@@ -10,7 +10,7 @@ const Card = ({ id, title, date, tag, description }) => {
           <h2>{title}</h2>
         </Link>
         <span className="date">{date}</span>
-        <p className="tag">{tag}</p>
+        <p className="tag">{name}</p>
         <p className="description">{description}</p>
       </div>
     </>
